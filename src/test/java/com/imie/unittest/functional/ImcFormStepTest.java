@@ -67,14 +67,14 @@ public class ImcFormStepTest extends FluentCucumberTest {
         System.out.println("Gender filled: " + gender);
     }
 
-    @When("The user fill the height box with <(\\d+)>")
+    @When("^The user fill the height box with <(\\-*\\d+)>$")
     public void fillHeight(int height) {
         WebElement heightElement = getDriver().findElement(By.id("taille"));
         heightElement.sendKeys("" + height);
         System.out.println("Height: " + height);
     }
 
-    @When("The user fill the weight box with <(\\d+)>")
+    @When("^The user fill the weight box with <(\\d+)>$")
     public void fillWeight(int weight) {
         WebElement weightElement = getDriver().findElement(By.id("poids"));
         weightElement.sendKeys("" + weight);
