@@ -49,7 +49,7 @@ public class ImcFormTest {
         System.out.println("Weight: " + weight);
     }
 
-    @When("The user fill the age box with <(\\d+)>")
+    @When("^The user fill the age box with <(\\d+)>$")
     public void fillAge(int age) {
         System.out.println("age: " + age);
     }
@@ -66,7 +66,7 @@ public class ImcFormTest {
 
     @Then("^The calculated IMC is <(\\d+\\.\\d+)>$")
     public void checkImc(float expectedImc)  {
-        Assertions.assertThat(expectedImc).isLessThan(10);
+        Assertions.assertThat(expectedImc).isNotZero();
     }
 
     @Then("^The calculated IMC label is <(.*)>$")

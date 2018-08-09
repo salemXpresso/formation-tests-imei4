@@ -8,6 +8,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         format = {"pretty", "html:target/html"},
         glue = {"com/imie/unittest/functional"})
-public class CucumberRunner {
+public class CucumberRunnerTest {
 
 }
