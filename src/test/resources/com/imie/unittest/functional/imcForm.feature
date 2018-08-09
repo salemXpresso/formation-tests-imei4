@@ -12,7 +12,7 @@ Feature: IMC Calculator form
     When The user clicks on "Calcul de l'IMC"
     Then The IMC form is displayed
 
-    When The user selects <Femme> gender
+    When The user selects <Homme> gender
     And The user fill the height box with <170>
     And The user fill the weight box with <65>
     And The user fill the age box with <20>

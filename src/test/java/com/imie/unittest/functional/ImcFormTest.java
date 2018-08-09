@@ -3,11 +3,13 @@ package com.imie.unittest.functional;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
-import static org.assertj.core.api.Assertions.*;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ImcFormTest extends SeleniumTests {
 
@@ -42,44 +44,63 @@ public class ImcFormTest extends SeleniumTests {
         assertThat(getDriver().findElement(By.className("form-mini-container")).isDisplayed()).isTrue();
     }
 
-    @When("The user selects <(.*)> gender")
+    @When("^The user selects <(.*)> gender$")
     public void fillGender(String gender) {
+        WebElement genderSelect = getDriver().findElement(By.id("sexe"));
+        assertThat(genderSelect.isDisplayed()).isTrue();
+        Select genderElement = new Select(genderSelect);
+        genderElement.selectByVisibleText(gender);
+
         System.out.println("Gender filled: " + gender);
     }
 
     @When("The user fill the height box with <(\\d+)>")
     public void fillHeight(int height) {
+        WebElement heightElement = getDriver().findElement(By.id("taille"));
+        heightElement.sendKeys("" + height);
         System.out.println("Height: " + height);
     }
 
     @When("The user fill the weight box with <(\\d+)>")
     public void fillWeight(int weight) {
+        WebElement weightElement = getDriver().findElement(By.id("poids"));
+        weightElement.sendKeys("" + weight);
         System.out.println("Weight: " + weight);
     }
 
     @When("^The user fill the age box with <(\\d+)>$")
     public void fillAge(int age) {
+        WebElement ageElement = getDriver().findElement(By.id("age"));
+        ageElement.sendKeys("" + age);
         System.out.println("age: " + age);
     }
 
     @When("The user submits the form")
     public void submit()  {
+        getDriver().findElement(By.id("calcul")).click();
         System.out.println("submit");
     }
 
     @Then("The IMC result box is displayed")
     public void checkResult()  {
-        assertThat("ResultOK").isNotEmpty();
+        assertThat(getDriver().findElement(By.id("resultat")).isDisplayed());
     }
 
     @Then("^The calculated IMC is <(\\d+\\.\\d+)>$")
     public void checkImc(float expectedImc)  {
-        assertThat(expectedImc).isNotZero();
+        WebElement resultatDiv = getDriver().findElement(By.id("resultat"));
+        List<WebElement> pTags = resultatDiv.findElements(By.tagName("p"));
+        assertThat(pTags).isNotEmpty();
+        String imc = pTags.get(0).findElement(By.tagName("span")).getText();
+        assertThat(imc).startsWith("" + expectedImc);
     }
 
     @Then("^The calculated IMC label is <(.*)>$")
     public void checkLabel(String expectedLabel)  {
-        assertThat(expectedLabel).isNotEmpty();
+        WebElement resultatDiv = getDriver().findElement(By.id("resultat"));
+        List<WebElement> pTags = resultatDiv.findElements(By.tagName("p"));
+        String imcLabel = pTags.get(1).findElement(By.tagName("span")).getText();
+        assertThat(imcLabel).isEqualTo(expectedLabel);
     }
 
     @Then("The user closes his Web browser")
