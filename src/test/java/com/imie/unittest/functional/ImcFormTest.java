@@ -5,7 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.core.api.Assertions;
 
-public class ImcFormTest {
+public class ImcFormTest extends SeleniumTests {
 
     @Given("^A running platform$")
     public void testRunningPlatform() {
@@ -16,6 +16,7 @@ public class ImcFormTest {
     @When("^The user opens <(http.*)>$")
     public void openHomePage(String url) {
         System.out.println("Open " + url + " page");
+        getDriver().navigate().to(url);
     }
 
     @Then("The home page is displayed")
