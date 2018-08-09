@@ -1,8 +1,12 @@
 package com.imie.unittest.functional;
 
+import com.imie.unittest.functional.driverfactory.DriverFactory;
+import com.imie.unittest.functional.pages.HomePage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.fluentlenium.adapter.cucumber.FluentCucumberTest;
+import org.fluentlenium.core.annotation.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -11,7 +15,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ImcFormTest extends SeleniumTests {
+public class ImcFormStepTest extends FluentCucumberTest {
+
+    @Page
+    HomePage homePage;
+
+    public ImcFormStepTest() {
+
+        DriverFactory driverFactory = new DriverFactory();
+        initFluent(driverFactory.getDriver());
+    }
 
     @Given("^A running platform$")
     public void testRunningPlatform() {

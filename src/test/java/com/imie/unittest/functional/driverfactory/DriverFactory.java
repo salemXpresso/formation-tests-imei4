@@ -1,4 +1,4 @@
-package com.imie.unittest.functional;
+package com.imie.unittest.functional.driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,12 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.io.File;
 import java.util.HashMap;
 
-@Deprecated
-public class SeleniumTests {
+public class DriverFactory {
 
     private WebDriver driver;
 
-    public SeleniumTests() {
+    public DriverFactory() {
 
         // VM arg : -Dchrome.driver.path=C:/_work/tools/GoogleChromePortable/chromedriver.exe
         final String driverPath = System.getProperty("chrome.driver.path");
