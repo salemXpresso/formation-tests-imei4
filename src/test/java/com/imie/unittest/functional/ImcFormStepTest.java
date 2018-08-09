@@ -2,6 +2,7 @@ package com.imie.unittest.functional;
 
 import com.imie.unittest.functional.driverfactory.DriverFactory;
 import com.imie.unittest.functional.pages.HomePage;
+import com.imie.unittest.functional.pages.ImcPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,6 +20,9 @@ public class ImcFormStepTest extends FluentCucumberTest {
 
     @Page
     HomePage homePage;
+
+    @Page
+    ImcPage imcPage;
 
     public ImcFormStepTest() {
 
@@ -96,7 +100,12 @@ public class ImcFormStepTest extends FluentCucumberTest {
 
     @Then("The IMC result box is displayed")
     public void checkResult()  {
-        assertThat(getDriver().findElement(By.id("resultat")).isDisplayed());
+        assertThat(imcPage.isResultDisplayed());
+    }
+
+    @Then("The IMC result box is not displayed")
+    public void checkResultNotDisplayed()  {
+        assertThat(imcPage.isResultDisplayed()).isFalse();
     }
 
     @Then("^The calculated IMC is <(\\d+\\.\\d+)>$")
@@ -114,6 +123,12 @@ public class ImcFormStepTest extends FluentCucumberTest {
         List<WebElement> pTags = resultatDiv.findElements(By.tagName("p"));
         String imcLabel = pTags.get(1).findElement(By.tagName("span")).getText();
         assertThat(imcLabel).isEqualTo(expectedLabel);
+    }
+
+    @Then("^The result label says the data is inconsistent$")
+    public void resultInconsistent() {
+
+        assertThat(imcPage.isResultInconsistent());
     }
 
     @Then("The user closes his Web browser")

@@ -1,4 +1,6 @@
 package com.imie.unittest.functional.pages;
 
-public class HomePage {
+import org.fluentlenium.core.FluentPage;
+
+public class HomePage extends FluentPage {
 }

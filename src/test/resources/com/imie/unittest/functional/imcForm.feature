@@ -1,7 +1,6 @@
 # language: en
 Feature: IMC Calculator form
 
-  @wip
   Scenario: In order to retrieve the user's IMC,
   I want to fill the form and get my IMC with its description
     Given A running platform
@@ -24,6 +23,7 @@ Feature: IMC Calculator form
     # Post requisites
     And The user closes his Web browser
 
+  @wip
   Scenario: In order to verify the robustness of the IMC form, I want to check that wrong values are taken into account
     Given A running platform
 

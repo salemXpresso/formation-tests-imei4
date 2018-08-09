@@ -7,7 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         format = {"pretty", "html:target/html"},
-        glue = {"com/imie/unittest/functional"})
+        glue = {"com/imie/unittest/functional"}
+        //, tags = {"@wip"}
+        )
 public class CucumberRunnerTest {
 
 }
