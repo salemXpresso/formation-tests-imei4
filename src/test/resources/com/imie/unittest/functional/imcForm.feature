@@ -20,3 +20,6 @@ Feature: IMC Calculator form
     Then The IMC result box is displayed
     And The calculated IMC is <22.49>
     And The calculated IMC label is <Corpulence Normale>
+
+    # Post requisites
+    And The user closes his Web browser

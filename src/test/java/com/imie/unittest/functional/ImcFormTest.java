@@ -4,6 +4,10 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class ImcFormTest extends SeleniumTests {
 
@@ -22,17 +26,20 @@ public class ImcFormTest extends SeleniumTests {
     @Then("The home page is displayed")
     public void checkHomePageDisplayed() {
         System.out.println("Home page should be displayed");
+        assertThat(getDriver().findElement(By.id("post-853")).isDisplayed()).isTrue();
     }
 
     @When("The user clicks on \"Calcul de l'IMC\"")
     public void clickCalculImc() {
         System.out.println("click calcul IMC");
+        WebElement calculImcTab = getDriver().findElement(By.id("menu-item-1637"));
+        assertThat(calculImcTab.isDisplayed()).isTrue();
+        calculImcTab.click();
     }
 
     @When("The IMC form is displayed")
     public void checkImcFormDisplayed() {
-        // Assertion test (always true)
-        Assertions.assertThat("ImcForm").isNotEmpty();
+        assertThat(getDriver().findElement(By.className("form-mini-container")).isDisplayed()).isTrue();
     }
 
     @When("The user selects <(.*)> gender")
@@ -62,16 +69,21 @@ public class ImcFormTest extends SeleniumTests {
 
     @Then("The IMC result box is displayed")
     public void checkResult()  {
-        Assertions.assertThat("ResultOK").isNotEmpty();
+        assertThat("ResultOK").isNotEmpty();
     }
 
     @Then("^The calculated IMC is <(\\d+\\.\\d+)>$")
     public void checkImc(float expectedImc)  {
-        Assertions.assertThat(expectedImc).isNotZero();
+        assertThat(expectedImc).isNotZero();
     }
 
     @Then("^The calculated IMC label is <(.*)>$")
     public void checkLabel(String expectedLabel)  {
-        Assertions.assertThat(expectedLabel).isNotEmpty();
+        assertThat(expectedLabel).isNotEmpty();
+    }
+
+    @Then("The user closes his Web browser")
+    public void closeBrowser() {
+        getDriver().close();
     }
 }
