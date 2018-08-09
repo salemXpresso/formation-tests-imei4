@@ -1,30 +1,23 @@
 package com.imie.unittest.functional;
 
-import cucumber.api.java.en.Then;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.TestPropertySource;
 
 import java.io.File;
 import java.util.HashMap;
 
-@TestPropertySource("classpath:conf/conf.properties")
 public class SeleniumTests {
 
     private WebDriver driver;
 
-    // TODO @Value("${chrome.portable.path}")
-    private String browserPath="C:/_work/tools/GoogleChromePortable/GoogleChromePortable.exe";
-
-    // TODO @Value("${chrome.driver.path}")
-    private String driverPath="C:/_work/tools/GoogleChromePortable/chromedriver.exe";
-
     public SeleniumTests() {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+
+        // VM arg : -Dchrome.driver.path=C:/_work/tools/GoogleChromePortable/chromedriver.exe
+        final String driverPath = System.getProperty("chrome.driver.path");
+        // VM arg : -Dchrome.portable.path=C:/_work/tools/GoogleChromePortable/GoogleChromePortable.exe
+        final String browserPath = System.getProperty("chrome.portable.path");
 
         ChromeOptions options = new ChromeOptions();
         options.setBinary(browserPath);
