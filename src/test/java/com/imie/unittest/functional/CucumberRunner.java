@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         glue = {"com/imie/unittest/functional"}
         //, tags = {"@wip"}
         )
-public class CucumberRunnerTest {
+
+public class CucumberRunner {
 
 }

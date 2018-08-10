@@ -23,7 +23,6 @@ Feature: IMC Calculator form
     # Post requisites
     And The user closes his Web browser
 
-  @wip
   Scenario: In order to verify the robustness of the IMC form, I want to check that wrong values are taken into account
     Given A running platform
 

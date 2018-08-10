@@ -19,6 +19,12 @@ public class DriverFactory {
         // VM arg : -Dchrome.portable.path=C:/_work/tools/GoogleChromePortable/GoogleChromePortable.exe
         final String browserPath = System.getProperty("chrome.portable.path");
 
+        // VM arg: -Dwebdriver.gecko.driver=/home/remi/geckodriver
+        /*final String geckoDriverPath = System.getProperty("webdriver.gecko.driver");
+        if(geckoDriverPath != )
+        System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
+        */
+
         ChromeOptions options = new ChromeOptions();
         options.setBinary(browserPath);
 
