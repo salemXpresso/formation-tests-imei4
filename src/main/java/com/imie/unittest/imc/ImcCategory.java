@@ -8,17 +8,17 @@ import java.util.Map;
 @Component
 public class ImcCategory {
 
-    private static Map<Integer, String> categoriesLabel = new HashMap<Integer, String>() {
-        {
-            put(1, "Famine");
-            put(2, "Maigreur");
-            put(3, "Corpulence normale");
-            put(4, "Surpoids");
-            put(5, "Obésité modérée");
-            put(6, "Obésité sévère");
-            put(7, "Obésité morbide ou massive");
-        }
-    };
+    private Map<Integer, String> categoriesLabel = new HashMap<>();
+
+    public ImcCategory() {
+        categoriesLabel.put(1, "Famine");
+        categoriesLabel.put(2, "Maigreur");
+        categoriesLabel.put(3, "Corpulence normale");
+        categoriesLabel.put(4, "Surpoids");
+        categoriesLabel.put(5, "Obésité modérée");
+        categoriesLabel.put(6, "Obésité sévère");
+        categoriesLabel.put(7, "Obésité morbide ou massive");
+    }
 
     public int getCategory(int imc) {
         if(imc < 0) {
